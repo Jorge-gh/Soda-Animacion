@@ -1,0 +1,199 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#videoFondo{
+    width: 400px;
+}
+
+body{
+    --position : 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100svh;
+
+
+    font-family: "Spicy Rice", serif;
+    font-weight: 400;
+    font-style: normal;
+  
+}
+
+#soda {
+    --width: 275px;
+    display: grid;
+    z-index: 1;
+}
+
+#soda > *{
+    width: var(--width);
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#soda .labels{
+    background: url(./images/labels.jpg);
+    background-size: calc(var(--width) * 3);
+
+    mask: url(./images/soda.svg);
+    mask-size: contain;
+    mix-blend-mode: multiply;
+
+    background-position-x: calc(var(--width) * -1 * var(--position));
+    transition: background-position .4s ease-out;
+}
+
+section {
+    position: fixed;
+    bottom: 0;
+    left: calc(-100vw * var(--position));
+
+    z-index: -1;
+    display: flex;
+    transition: left .4s ease-out;
+}
+
+section.frutas article{
+    height: 100vh;
+    width: 100vw;
+    z-index: -2;
+    overflow: hidden;
+}
+
+section.frutas article .items{
+    width: 100vw;
+    height: 100%;
+
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    gap: 120px;
+
+    animation: caida-frutas 1s ease-out;
+}
+
+article .items img{
+    height: 250px;
+    filter: drop-shadow(0px 200px 10px rgba(0, 0, 0, 0.321));
+}
+
+section .manzana{
+    background-color: #ffb2b2;
+}
+
+section .pera{
+    background-color: #c9e78a;
+}
+
+section .exotico{
+    background-color: #9c96f6;
+}
+
+.title{
+    position: fixed;
+    text-align: center;
+    font-size: 40vmin;
+    
+    mix-blend-mode: overlay;
+    color: #ffffff93;
+
+    animation: animacionTitulo 1s ease-out;
+}
+
+.botones{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.botones button{
+    width: 90px;
+    height: 90px;
+    background-color: white;
+    border: none;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.botones button img{
+    width: 40px;
+}
+
+article .items :nth-child(1){
+    padding-bottom: 200px;
+    transform-origin: top left;
+    animation: animacionFrutas 5s infinite;
+    animation-delay: -0.5s;
+}
+article .items :nth-child(2){
+    padding-top: 150px;
+    animation: animacionFrutas 5s infinite;
+    animation-delay: -0.2s;
+}
+article .items :nth-child(3){
+    padding-bottom: 200px;
+    animation: animacionFrutas 5s infinite;
+}
+article .items :nth-child(4){
+    padding-top: 150px;
+    animation: animacionFrutas 5s infinite;
+    animation-delay: -0.7s;
+}
+
+@keyframes animacionFrutas {
+    from{
+        transform: translate(0,0) scale(1);
+    }
+
+    50%{
+        transform: translate(-2px, 2px) scale(1.01) rotate(5deg);
+    }
+
+    to{
+
+    }
+}
+
+@keyframes caida-frutas {
+    from{
+        bottom: 100vh;
+    }
+
+    30%{
+        bottom: 100vh;
+    }
+
+    to{
+        bottom: 0   ;
+    }
+}
+
+@keyframes animacionTitulo {
+    from{
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    80%{
+        opacity: 1;
+    }
+
+    to{
+        transform: scale(1);
+    }
+}
